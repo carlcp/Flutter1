@@ -88,6 +88,14 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
               SizedBox(height: 16),
               ElevatedButton(
             onPressed: () => {
+              ScaffoldMessenger.of(context).showSnackBar(
+                
+                SnackBar(content: Text('Cadastro Realizado Com Sucesso !',textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15))
+                , backgroundColor: Color.fromARGB(255, 151, 119, 120))
+              
+              
+              ),
+
               Navigator.pop(context, 
               MaterialPageRoute(builder: (context) => Usuarios(),))
             },

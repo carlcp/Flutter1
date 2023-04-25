@@ -227,6 +227,15 @@ class _CarrinhoState extends State<Carrinho> {
     height: 75,
     child: ElevatedButton(
             onPressed: () => {
+
+              ScaffoldMessenger.of(context).showSnackBar(
+                
+                SnackBar(content: Text('Pedido Realizado Com Sucesso !',textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15))
+                , backgroundColor: Color.fromARGB(255, 151, 119, 120))
+              
+              
+              ),
+
               Navigator.push(context, 
               MaterialPageRoute(builder: (context) => Menu(),))
 
