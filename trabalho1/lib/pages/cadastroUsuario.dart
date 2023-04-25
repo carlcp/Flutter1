@@ -52,18 +52,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                     ),
                 ),
               ),
-              SizedBox(height: 16),
-              TextFormField(
-                controller: _cpfController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  labelText: 'CPF',
-                  labelStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                    ),
-                ),
-              ),
+              
               
               SizedBox(height: 16),
               DropdownButton<String>(
