@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "996889960936",
+    "project_id": "agroapp-e54d0",
+    "storage_bucket": "agroapp-e54d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996889960936:android:af9e0c57a70547fef9c45d",
+        "android_client_info": {
+          "package_name": "com.example.trabalho1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996889960936-7ebrtefhvcb683flh8dbcict50utjork.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwDOoEFpr3RsG1X1dxbB3fKu0kCwpDApI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996889960936-7ebrtefhvcb683flh8dbcict50utjork.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "996889960936-4pejpdgliajbjb9iegae4skl1l3k13q0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.trabalho1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

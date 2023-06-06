@@ -1,6 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:trabalho1/controller/login_controller.dart';
 import 'package:trabalho1/pages/login.page.dart';
 import 'package:trabalho1/pages/principal.dart';
 class ConfigUser extends StatefulWidget {
@@ -11,6 +12,7 @@ class ConfigUser extends StatefulWidget {
 }
 
 class _ConfigUserState extends State<ConfigUser> {
+  var txtNome = TextEditingController();
   @override
   Widget build(BuildContext context) {
    return Scaffold(
@@ -41,6 +43,7 @@ class _ConfigUserState extends State<ConfigUser> {
           height: 60,
           width: 250,
           child:  TextFormField(
+          controller: txtNome,
           autofocus: true,
           keyboardType: TextInputType.text,
           style: new TextStyle(color: Colors.white, fontSize: 20),
@@ -112,17 +115,10 @@ class _ConfigUserState extends State<ConfigUser> {
     child: ElevatedButton(
             onPressed: () => {
 
-              ScaffoldMessenger.of(context).showSnackBar(
-                
-                SnackBar(content: Text('Informações alteradas com sucesso!!!',textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15))
-                , backgroundColor: Color.fromARGB(255, 151, 119, 120))
-                
-              
-              
-              ),
+              LoginController().atualizar(context, txtNome.text),
 
               Navigator.push(context, 
-              MaterialPageRoute(builder: (context) => LoginPage(),))
+              MaterialPageRoute(builder: (context) => Menu(),))
 
             },
             style: ElevatedButton.styleFrom(

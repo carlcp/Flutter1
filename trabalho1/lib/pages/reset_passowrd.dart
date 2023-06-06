@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:trabalho1/pages/login.page.dart';
+import '../controller/login_controller.dart';
 
 class recuperarSenha extends StatefulWidget {
   const recuperarSenha({Key? key}) : super(key: key);
@@ -10,6 +11,8 @@ class recuperarSenha extends StatefulWidget {
 }
 
 class _RecuperarSenhaState extends State<recuperarSenha> {
+  var txtEmailEsqueceuSenha = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +30,7 @@ class _RecuperarSenhaState extends State<recuperarSenha> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextFormField(
+                controller: txtEmailEsqueceuSenha,
                 autofocus: true,
                 keyboardType: TextInputType.emailAddress,
                 style: const TextStyle(color: Colors.white, fontSize: 20),
@@ -42,17 +46,10 @@ class _RecuperarSenhaState extends State<recuperarSenha> {
                 child: ElevatedButton(
                   onPressed: () => {
 
-                    ScaffoldMessenger.of(context).showSnackBar(
-                
-                SnackBar(content: Text('Foi enviado um link em seu e-mail !',textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15))
-                , backgroundColor: Color.fromARGB(255, 151, 119, 120))
-                
-              
-              
-              ),
-
-                    Navigator.pop(context, 
-                    MaterialPageRoute(builder: (context) => LoginPage(),))
+                   LoginController().esqueceuSenha(
+                                context,
+                                txtEmailEsqueceuSenha.text,
+                              )
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor:

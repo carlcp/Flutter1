@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trabalho1/controller/tarefa_controller.dart';
 import 'package:trabalho1/pages/gado.dart';
 
 class GadoCadastro extends StatefulWidget {
@@ -11,7 +12,10 @@ class GadoCadastro extends StatefulWidget {
 class _GadoCadastroState extends State<GadoCadastro> {
   final List<String> _breeds = ['Raça do Gado','Angus', 'Hereford', 'Nelore', 'Holandês', 'Gir', 'Wagyu'];
   String _selectedBreed = '';
-
+  var txtTipo = TextEditingController();
+  var txtEstado = TextEditingController();
+  var txtId = TextEditingController();
+  
   @override
   void initState() {
     super.initState();
@@ -33,6 +37,7 @@ class _GadoCadastroState extends State<GadoCadastro> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
+              controller: txtId,
               decoration: InputDecoration(
               labelText: 'Número de identificação',
              labelStyle: TextStyle(
@@ -49,11 +54,17 @@ class _GadoCadastroState extends State<GadoCadastro> {
                   SizedBox(height: 16.0),
                   SizedBox(height: 16.0),
                   DropdownButton<String>(
+                    
                   value: _selectedBreed,
+                  
                   items: _breeds.map((String value) {
+                   
                   return DropdownMenuItem<String>(
+                    
                     value: value,
+                    
                     child: Text(
+                      
                       value,
                       style : TextStyle(
                       color: Colors.white
@@ -62,6 +73,7 @@ class _GadoCadastroState extends State<GadoCadastro> {
                     );
                   }).toList(),
               onChanged: (String? newValue) {
+                txtTipo.text = newValue.toString();
                 setState(() {
                   _selectedBreed = newValue!;
                 });
@@ -73,10 +85,12 @@ class _GadoCadastroState extends State<GadoCadastro> {
                     ),
                   ),
                   dropdownColor:  Color.fromARGB(210, 132, 14, 14),
+                  
             ),
             
                 SizedBox(height: 16.0),
                 TextField(
+                  controller: txtEstado,
                 decoration: InputDecoration(
                 labelText: 'Estado',
                 labelStyle: TextStyle(
@@ -93,6 +107,9 @@ class _GadoCadastroState extends State<GadoCadastro> {
               child: ElevatedButton(
             onPressed: () => {
 
+
+              TarefaController().adicionar(context, txtTipo.text,  txtEstado.text, txtId.text),
+              
                 ScaffoldMessenger.of(context).showSnackBar(
                 
                 SnackBar(content: Text('Cadastro Realizado Com Sucesso !',textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15))

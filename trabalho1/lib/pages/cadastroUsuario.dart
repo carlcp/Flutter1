@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trabalho1/pages/usuarios.dart';
-
+import 'package:trabalho1/controller/tarefa_controller.dart';
 class CadastroUsuario extends StatefulWidget {
   @override
   _CadastroUsuarioState createState() => _CadastroUsuarioState();
@@ -12,6 +12,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
   final _emailController = TextEditingController();
   final _cpfController = TextEditingController();
   final _senhaController = TextEditingController();
+  var txtCat = TextEditingController();
   String _categoria = 'Selecione a Categoria';
 
   @override
@@ -59,7 +60,7 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
                 value: _categoria,
                 onChanged: (String? newValue) {
                   setState(() {
-                    _categoria = newValue!;
+                    txtCat.text = newValue!;
                   });
                 },
                 items: <String>['Selecione a Categoria','Bronze', 'Prata', 'Ouro', 'Diamante']
@@ -77,8 +78,12 @@ class _CadastroUsuarioState extends State<CadastroUsuario> {
               SizedBox(height: 16),
               ElevatedButton(
             onPressed: () => {
+
+              TarefaController().adicionar2(context, _nomeController.text,  txtCat.text),
+              
+
               ScaffoldMessenger.of(context).showSnackBar(
-                
+
                 SnackBar(content: Text('Cadastro Realizado Com Sucesso !',textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15))
                 , backgroundColor: Color.fromARGB(255, 151, 119, 120))
               

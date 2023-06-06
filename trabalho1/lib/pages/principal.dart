@@ -6,6 +6,8 @@ import 'package:trabalho1/pages/login.page.dart';
 import 'package:trabalho1/pages/sobre.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:trabalho1/pages/usuarios.dart';
+import '../controller/login_controller.dart';
+
 class Menu extends StatefulWidget {
 const Menu({Key? key}) : super(key: key);
 
@@ -90,14 +92,26 @@ Widget build(BuildContext context) {
                     width: 80,
                   color: Colors.black54,
 ),
- Text(
-                  'Cesare Crosara',
+
+Expanded(
+ child: FutureBuilder(
+    future: LoginController().usuarioLogado(),
+    builder: (context, snapshot) {
+      return Directionality(
+        textDirection: TextDirection.rtl,
+                    child: Text(
+                  snapshot.data.toString(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+      );
+    },
+  ),
+),
+ 
               ],
             ),
           ),
@@ -188,6 +202,9 @@ Widget build(BuildContext context) {
               ),
             ),
             onTap: (){
+
+
+              LoginController().logout();
 
                 ScaffoldMessenger.of(context).showSnackBar(
                 
@@ -592,6 +609,8 @@ Widget build(BuildContext context) {
                         ], 
                       ),
        )
+
+       
                     
       
         ],

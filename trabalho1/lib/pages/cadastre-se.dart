@@ -2,6 +2,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:trabalho1/pages/login.page.dart';
+import '../controller/login_controller.dart';
 class CadastroPage extends StatefulWidget {
   const CadastroPage({super.key});
 
@@ -10,6 +11,10 @@ class CadastroPage extends StatefulWidget {
 }
 
 class _CadastroPageState extends State<CadastroPage> {
+  var txtEmail = TextEditingController();
+  var txtSenha = TextEditingController();
+  var txtEmailEsqueceuSenha = TextEditingController();
+  var txtNome = TextEditingController();
   @override
   Widget build(BuildContext context) {
   return Scaffold(
@@ -27,6 +32,7 @@ class _CadastroPageState extends State<CadastroPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         TextFormField(
+          controller: txtNome,
           autofocus: true,
           keyboardType: TextInputType.text,
           style: new TextStyle(color: Colors.white, fontSize: 20),
@@ -39,6 +45,7 @@ class _CadastroPageState extends State<CadastroPage> {
         ),
         SizedBox(height: 50),
         TextFormField(
+          controller: txtEmail,
           autofocus: true,
           keyboardType: TextInputType.emailAddress,
           style: new TextStyle(color: Colors.white, fontSize: 20),
@@ -51,6 +58,7 @@ class _CadastroPageState extends State<CadastroPage> {
         ),
         SizedBox(height: 50),
          TextFormField(
+          controller: txtSenha,
           autofocus: true,
           obscureText: true,
           keyboardType: TextInputType.text,
@@ -94,17 +102,16 @@ class _CadastroPageState extends State<CadastroPage> {
     height: 75,
     child: ElevatedButton(
             onPressed: () => {
-
-              ScaffoldMessenger.of(context).showSnackBar(
-                
-                SnackBar(content: Text('Confirme seu e-mail !',textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 15))
-                , backgroundColor: Color.fromARGB(255, 151, 119, 120))
               
-              
-              ),
 
-              Navigator.pop(context, 
-              MaterialPageRoute(builder: (context) => LoginPage(),))
+              LoginController().criarConta(
+                      context,
+                      txtNome.text,
+                      txtEmail.text,
+                      txtSenha.text,
+                    ),
+
+          
 
             },
             style: ElevatedButton.styleFrom(

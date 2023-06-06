@@ -5,8 +5,10 @@ import 'package:trabalho1/pages/login.page.dart';
 import 'package:flutter/material.dart';
 import 'package:trabalho1/pages/principal.dart';
 import 'package:trabalho1/pages/reset_passowrd.dart';
+import '../controller/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
+  
 const LoginPage({super.key});
 
 @override
@@ -14,6 +16,10 @@ State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var txtEmail = TextEditingController();
+  var txtSenha = TextEditingController();
+
+
 @override
 Widget build(BuildContext context) {
   return Scaffold(
@@ -42,18 +48,24 @@ Widget build(BuildContext context) {
        
         SizedBox(height: 40),
         TextFormField(
+          controller: txtEmail,
           autofocus: true,
           keyboardType: TextInputType.emailAddress,
           style: new TextStyle(color: Colors.white, fontSize: 20),
           decoration: InputDecoration(
             labelText: "E-MAIL",
             labelStyle: TextStyle(color: Colors.white),
-            
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+            color: Colors.black,
+            width: 2,
+          )),
           ),
         
         ),
         SizedBox(height: 100),
          TextFormField(
+          controller: txtSenha,
           autofocus: true,
           obscureText: true,
           keyboardType: TextInputType.text,
@@ -107,16 +119,14 @@ Widget build(BuildContext context) {
     child: ElevatedButton(
             onPressed: () => {
 
-              ScaffoldMessenger.of(context).showSnackBar(
-                
-                SnackBar(content: Text('BEM VINDO !',textAlign: TextAlign.center,style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30))
-                , backgroundColor: Color.fromARGB(255, 151, 119, 120))
-              
-              
-              ),
 
-              Navigator.push(context, 
-              MaterialPageRoute(builder: (context) => Menu(),))
+              LoginController().login(
+                  context,
+                  txtEmail.text,
+                  txtSenha.text,
+                ),
+
+            
 
             },
             style: ElevatedButton.styleFrom(
